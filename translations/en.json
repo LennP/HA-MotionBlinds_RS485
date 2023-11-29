@@ -1,0 +1,66 @@
+{
+    "config": {
+        "step": {
+            "confirm": {
+                "description": "Optionally fill in the key if configured.",
+                "data": {
+                    "key": "Key"
+                }
+            }
+        }
+    },
+    "services": {
+        "start": {
+            "name": "Start scene",
+            "description": "Starts a scene on the selected Domotica Box.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entity",
+                    "description": "Name of the entity_id to start a scene on."
+                },
+                "scene": {
+                    "name": "Scene",
+                    "description": "The scene to start."
+                }
+            }
+        },
+        "stop": {
+            "name": "Stop scene",
+            "description": "Stops a scene on the selected Domotica Box.",
+            "fields": {
+                "entity_id": {
+                    "name": "Entity",
+                    "description": "Name of the entity_id to stop a scene on."
+                },
+                "scene": {
+                    "name": "Scene",
+                    "description": "The scene to stop."
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "key": "Key"
+                }
+            }
+        }
+    },
+    "entity": {
+        "button": {
+            "start": {
+                "name": "Start"
+            },
+            "stop": {
+                "name": "Stop"
+            }
+        },
+        "select": {
+            "scene": {
+                "name": "Scene"
+            }
+        }
+    }
+}

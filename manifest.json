@@ -1,0 +1,25 @@
+{
+  "domain": "motionblinds_rs485",
+  "name": "MotionBlinds RS485",
+  "codeowners": [
+    "@LennP",
+    "@jerrybboy"
+  ],
+  "config_flow": true,
+  "dependencies": [
+    "zeroconf"
+  ],
+  "issue_tracker": "https://github.com/LennP/HA-MotionBlinds_RS485/",
+  "version": "1.0.0",
+  "documentation": "https://www.home-assistant.io/integrations/MotionBlinds_RS485",
+  "homekit": {},
+  "iot_class": "assumed_state",
+  "requirements": [],
+  "ssdp": [],
+  "zeroconf": [
+    {
+      "type": "_http._tcp.local.",
+      "name": "motionblinds*"
+    }
+  ]
+}
