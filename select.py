@@ -11,6 +11,7 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.event import async_call_later
 from homeassistant.helpers.entity import DeviceInfo
+from homeassistant.helpers import device_registry as dr
 
 from .motionblinds_rs485.device import MotionBlindsRS485Device
 
@@ -102,7 +103,24 @@ class SceneSelect(SelectEntity):
             identifiers={(DOMAIN, self.hostname)},
             manufacturer=MANUFACTURER,
             name=self._attr_name,
+            configuration_url=f"http://{self.hostname}.local"
+            + (
+                f"/?key={self.config_entry.data[CONF_KEY]}"
+                if self.config_entry.data[CONF_KEY] != ""
+                else ""
+            ),
         )
+
+    def set_key(self, key: str) -> None:
+        self.rs485_device.set_key(key)
+        device_registry = dr.async_get(self.hass)
+        device = device_registry.async_get_device(identifiers={(DOMAIN, self.hostname)})
+        if device:
+            device_registry.async_update_device(
+                device.id,
+                configuration_url=f"http://{self.hostname}.local"
+                + (f"/?key={key}" if key != "" else ""),
+            )
 
     async def async_added_to_hass(self) -> None:
         """Run when entity about to be added."""

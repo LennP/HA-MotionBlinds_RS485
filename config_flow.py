@@ -106,7 +106,7 @@ class OptionsFlowHandler(OptionsFlow):
                 self.config_entry,
                 data=updated_data,
             )
-            scene_select.rs485_device.set_key(user_input[CONF_KEY])
+            scene_select.set_key(user_input[CONF_KEY])
             return self.async_create_entry(title="", data=user_input)
 
         return self.async_show_form(
